@@ -1,0 +1,17 @@
+version: '3.8'
+
+name: laravel
+
+services:
+  laravel:
+    container_name: laravel-web
+    build: .
+    volumes:
+      - ./app_name:/var/www/html
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./conf.d/default.conf:/etc/nginx/conf.d/default.conf
+      - ./app_name:/var/www/html
